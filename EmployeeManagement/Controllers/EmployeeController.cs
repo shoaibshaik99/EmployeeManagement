@@ -50,5 +50,20 @@ namespace EmployeeManagement.Controllers
             context.SaveChanges();
             return new JsonResult("Employee data successfully discarded");
         }
+
+        [HttpGet]
+        public JsonResult GetEmployeeById(int id)
+        {
+            var employee = context.Employees.FirstOrDefault(x => x.Id == id);
+            return new JsonResult(employee);
+        }
+
+        [HttpPost]
+        public JsonResult UpdateEmployee(EmployeeModel emp)
+        {
+            context.Employees.Update(emp);
+            context.SaveChanges();
+            return new JsonResult(emp);
+        }
     }
 }
