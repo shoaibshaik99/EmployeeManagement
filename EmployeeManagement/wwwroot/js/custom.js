@@ -25,7 +25,7 @@ function ShowEmployeeData(){
                     object += '<td>' + item.phone + '</td>';
                     object += '<td>' + item.salary + '</td>';
                     object += '<td>' + item.address + '</td>';
-                    object += '<td><a href="#" class="btn btn-primary">Edit</a> || <a href="#" class="btn btn-danger">Delete</a></td>';
+                    object += '<td><a href="#" class="btn btn-primary">Edit</a> || <a href="#" class="btn btn-danger" onclick="DeleteEmployee('+item.id+')">Delete</a></td>';
                     object += '</tr>';
                 });
                 $('#table_data').html(object);
@@ -79,6 +79,22 @@ function AddEmployee() {
             },
             error: function () {
                 alert("Data could not be saved");
+            }
+        }
+    );
+}
+
+function DeleteEmployee(id) {
+    $.ajax(
+        {
+            url: '/Employee/DeleteEmployee?id='+id,
+            type: 'Delete',
+            success: function () {
+                alert("Data removed");
+                ShowEmployeeData();
+            },
+            error: function () {
+                alert("Data could not be deleted");
             }
         }
     );

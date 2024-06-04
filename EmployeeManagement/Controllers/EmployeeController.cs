@@ -41,5 +41,14 @@ namespace EmployeeManagement.Controllers
             context.SaveChanges();
             return new JsonResult("Data is saved");
         }
+
+        [HttpDelete]
+        public JsonResult DeleteEmployee(int id)
+        {
+            var employee = context.Employees.FirstOrDefault(x => x.Id == id);
+            context.Employees.Remove(employee);
+            context.SaveChanges();
+            return new JsonResult("Employee data successfully discarded");
+        }
     }
 }
