@@ -1,3 +1,6 @@
+using EmployeeManagement.Context;
+using Microsoft.EntityFrameworkCore;
+
 namespace EmployeeManagement
 {
     public class Program
@@ -8,6 +11,7 @@ namespace EmployeeManagement
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddDbContext<EmployeeDbContext>(c => c.UseSqlServer(builder.Configuration.GetConnectionString("EmployeeDbAJAXConnections")));
 
             var app = builder.Build();
 
@@ -28,7 +32,7 @@ namespace EmployeeManagement
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Employee}/{action=Index}/{id?}");
 
             app.Run();
         }
