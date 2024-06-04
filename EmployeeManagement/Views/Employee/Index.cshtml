@@ -5,6 +5,8 @@
 
 <h1>Index</h1>
 
+<button class="btn btn-sm btn-primary m-2" id="btnAddEmployee">Add Employee</button>
+
 <table class="table table-bordered">
     <thead>
         <tr class="text-center">
@@ -19,6 +21,49 @@
     </thead>
     <tbody class="text-center" id="table_data"></tbody>
 </table>
+
+<div class="modal fade modal" id="EmployeeModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="text-info modal-title">Add Employee</h1>
+                <button class="close text-danger" onclick="HideModalPopUp()" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form method="post">
+                    <div class="form-group" id="EmployeeId">
+                        <label>Id</label>
+                        <input type="text" class="form-control" id="empId" disabled="disabled" />
+                    </div>
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" placeholder="Enter your name" class="form-control" id="Name" autocomplete="off" />
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="text" placeholder="Enter your city" class="form-control" id="Email" autocomplete="off" />
+                    </div>
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input type="text" placeholder="Enter your city" class="form-control" id="Phone" autocomplete="off" />
+                    </div>
+                    <div class="form-group">
+                        <label>Salary</label>
+                        <input type="text" placeholder="Enter your Salary" class="form-control" id="Salary" autocomplete="off" />
+                    </div>
+                    <div class="form-group">
+                        <label>Address</label>
+                        <input type="text" placeholder="Enter your State" class="form-control" id="Address" autocomplete="off" />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer" >
+                <button class="btn btn-primary text-center" onclick="AddEmployee()" id="AddEmployeeDetails">Save</button>
+                <button class="btn btn-danger text-center" onclick="HideModalPopUp()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div>
     <input type="hidden" id=" urlEmployeeData" value="@Url.Action("EmployeeList","Employee")"/>

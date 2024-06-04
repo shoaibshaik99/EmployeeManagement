@@ -1,4 +1,6 @@
-﻿$(document).ready(function () {
+﻿//const { hide } = require("@popperjs/core");
+
+$(document).ready(function () {
     //alert('ok');
     ShowEmployeeData();
 });
@@ -33,4 +35,51 @@ function ShowEmployeeData(){
                 alert("Cannot fetch data");
             }
         });
+}
+
+
+$('#btnAddEmployee').click(function () {
+    $('#EmployeeModal').modal('show');
+    $('#EmployeeId').hide();
+
+});
+
+function HideModalPopUp() {
+    $('#EmployeeModal').modal('hide');
+}
+
+function ClearTextBox() {
+    $('#Name').val('');
+    $('#Email').val('');
+    $('#Phone').val('');
+    $('#Salary').val('');
+    $('#Address').val('');
+}
+
+function AddEmployee() {
+    var objdata = {
+        Name: $('#Name').val(),
+        Email: $('#Email').val(),
+        Phone: $('#Phone').val(),
+        Salary: $('#Salary').val(),
+        Address: $('#Address').val()
+    };
+    $.ajax(
+        {
+            url: '/Employee/AddEmployee',
+            type: 'Post',
+            data: objdata,
+            dataType: 'json',
+            contentType: 'application/x-www-form-urlencoded;charset=utf-8',
+            success: function () {
+                alert("Data Saved");
+                ClearTextBox();
+                ShowEmployeeData();
+                HideModalPopUp();
+            },
+            error: function () {
+                alert("Data could not be saved");
+            }
+        }
+    );
 }
